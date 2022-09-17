@@ -20,3 +20,6 @@ class Category(MPTTModel):
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
+
+class CategoryAttribute(models.Model):
+    name = 
