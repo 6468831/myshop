@@ -1,3 +1,7 @@
+{% include 'registration/_modal_signin.html' %}
+{% include 'registration/_modal_signup.html' %}
+
+
 <div style="display:flex; gap:1px; height:100px; ">
     
     <div class="nav-logo-block">
@@ -31,12 +35,11 @@
                     <i class="bi bi-cart2 nav-btn-icon"></i>
                 </div>
                 <div class="nav-btn">
-                    <div class="nav-btn-text">Sign in</div>
+                    <div class="nav-btn-text" data-bs-toggle="modal" data-bs-target="#sign-in-modal">Sign in</div>
                     <i class="bi bi-key nav-btn-icon"></i>
                 </div>
                 <div class="nav-btn">
-                    <div class="nav-btn-text">Sign up</div>
-                    <!-- <i class="bi bi-cart2 nav-btn-icon"></i> -->
+                    <div class="nav-btn-text" data-bs-toggle="modal" data-bs-target="#sign-up-modal">Sign up</div>
                 </div>
             </div>
         {% endif %}

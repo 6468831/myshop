@@ -8,21 +8,7 @@
           </div>
           
         <div class="modal-body">
-          <form class='validity' method="POST" action="{% url 'users:login' %}" id="sign-in-form" autocomplete="off">
-            {% csrf_token %}
-            <div class="container mb-3">
-              <label>{{sign_in_form.username.label}}</label>
-              {{sign_in_form.username}}
-              <span id="sign-in-email-error" class="error"></span>
-            </div>
-            <div class="container mb-3">
-              <label>{{sign_in_form.password.label}}</label>
-              {{sign_in_form.password}}
-            </div>
-            <div class="container mt-3">
-              <button onclick='sign_in_form_submit()' class="form-control btn btn-primary submit-sign-in-form">Sign in</button>
-            </div>
-        </form>
+    
         
         </div>
         <div class="modal-footer" >
