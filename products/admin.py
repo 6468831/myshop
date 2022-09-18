@@ -15,3 +15,8 @@ admin.site.register(
         'indented_title',
     ),)
 
+admin.site.register(Attribute)
+admin.site.register(CategoryAttribute)
+admin.site.register(ProductCategoryAttribute)
+admin.site.register(Image)
+

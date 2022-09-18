@@ -2,6 +2,7 @@
 
 .nav-logo-block{
     width:20%; 
+    min-width:310px;
     display:flex; 
     background-color: white;
 }
@@ -16,21 +17,28 @@
     padding:0 40px 0 40px; 
     align-items:center; 
     width:80%;  
+    min-width:970px;
     background-color: white;
 }
+
+
 
 .nav-search-field{
     background-color:#F8F9FD;
     height:45px;
     width: 500px;
 }
+
 .nav-search-field::placeholder {
     font-weight: light;
     font-size:0.8rem;
-    /* opacity: .5;
-    color: red; */
 }
 
+@media (max-width:1439px){
+    .nav-search-field{
+        width:400px
+    }
+}
 
 .nav-btn{
     display:flex;
@@ -49,14 +57,14 @@
 .nav-btn-text{
     margin:auto; 
     color:#6E58E2;
-    font-size:0.8rem;
+    font-size:0.85rem;
 
 }
 .nav-btn-icon{
     font-size:1rem;
     -webkit-text-stroke: 0.5px;
     /* align-self:center; */
-    margin: auto;
+    margin-top:11px;
     
     color:#6E58E2;
 }

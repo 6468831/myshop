@@ -1,0 +1,46 @@
+<div class="modal fade" id="sign-up-modal" tabindex="-1" aria-hidden="true">
+        
+    <div class="modal-dialog">
+      <div class="modal-content">
+        
+          <div class="modal-header">
+            <p style="font-size:2.5rem; margin:auto">Sign up</p>
+
+          </div>
+          
+        <div class="modal-body">
+          <form class='validity' method="POST" action="{% url 'users:register' %}" id="sign-up-form" autocomplete="off">
+            {% csrf_token %}
+            <div class="container mb-3">
+              <label>{{sign_up_form.email.label}}</label>
+              {{sign_up_form.email}}
+              <span id="sign-up-email-error" class="error"></span>
+            </div>
+            <div class="container mb-3">
+              <label>{{sign_up_form.password1.label}}</label>
+              {{sign_up_form.password1}}
+              <span id="pass1-error" class="error black">Minimum 8 characters</span>
+            </div>
+            <div class="container mb-3">
+              <label>{{sign_up_form.password2.label}}</label>
+              {{sign_up_form.password2}}
+              <span id="pass2-error" class="error"></span>
+            </div>
+            <div class="container mt-3">
+              <button onclick='sign_up_form_submit()' class="form-control btn btn-primary submit-sign-up-form">Sign up</button>
+
+            </div>
+        </form>
+
+        </div>
+        <div class="modal-footer" >
+          
+          <div class="container" style="display:flex; justify-content: right;">
+            <a href="" class="nav-link active no-underline-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#sign-in-modal">sign in</a>
+          </div>
+        
+        </div>
+      </div>
+
+</div>
+</div>

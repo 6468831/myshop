@@ -1,27 +1,44 @@
 <div style="display:flex; gap:1px; height:100px; ">
     
-    <div style="width:20%; display:flex; background-color: white;">
+    <div class="nav-logo-block">
         <div style="margin:auto; font-size:1.3rem">MyShop</div>
     </div>
-    
-    <div style="padding:0 40px 0 40px; align-items:center; width:80%; display:flex; justify-content:space-between; background-color: white;">
+
+    <div class="nav-main">
         <form>
             <!-- <div> -->
             <input type='search' class="form-control col-sm-12 glyphicon glyphicon-search  nav-search-field" placeholder='search among 100k+ items'>
 
         </form>
-        <div style="display:flex; gap:16px">
-            <div class="nav-btn">
-                <div class="nav-btn-text">Wishlist</div>
-                <i class="bi bi-heart nav-btn-icon"></i>
+        {% if request.user.is_authenticated %}
+            <div style="display:flex; gap:16px">
+                <div class="nav-btn">
+                    <div class="nav-btn-text">Wishlist</div>
+                    <i class="bi bi-heart nav-btn-icon"></i>
+                </div>
+                <div class="nav-btn">
+                    <div class="nav-btn-text">Your Cart</div>
+                    <i class="bi bi-cart2 nav-btn-icon"></i>
+                </div>
+                <div class="nav-avatar">
+                    <img style='height:inherit; width:inherit;' src="/media/images/default.png">
+                </div>
             </div>
-            <div class="nav-btn">
-                <div class="nav-btn-text">Your Cart</div>
-                <i class="bi bi-cart2 nav-btn-icon"></i>
+        {% else %}
+            <div style="display:flex; gap:16px">
+                <div class="nav-btn" style="margin-right:75px">
+                    <div class="nav-btn-text">Your Cart</div>
+                    <i class="bi bi-cart2 nav-btn-icon"></i>
+                </div>
+                <div class="nav-btn">
+                    <div class="nav-btn-text">Sign in</div>
+                    <i class="bi bi-key nav-btn-icon"></i>
+                </div>
+                <div class="nav-btn">
+                    <div class="nav-btn-text">Sign up</div>
+                    <!-- <i class="bi bi-cart2 nav-btn-icon"></i> -->
+                </div>
             </div>
-            <div class="nav-avatar">
-                <img style='height:inherit; width:inherit;' src="/media/images/default.png">
-            </div>
-        </div>
+        {% endif %}
     </div>
 </div>

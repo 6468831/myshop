@@ -1,0 +1,34 @@
+<div class="modal fade" id="pass-reset-modal" tabindex="-1" aria-hidden="true">
+        
+    <div class="modal-dialog">
+      <div class="modal-content">
+        
+          <div class="modal-header">
+            <p style="font-size:2.5rem; margin:auto">Password reset</p>
+          </div>
+          
+        <div class="modal-body">
+          <form class='validity' method="POST" action="{% url 'users:password_reset' %}" id="password_reset_form" autocomplete="off">
+            {% csrf_token %}
+            <div class="container mb-3">
+              <label>{{password_reset_form.email.label}}</label>
+              {{password_reset_form.email}}
+              <span id="sign-in-email-error" class="error"></span>
+            </div>
+            
+            <div class="container mt-3">
+              <button class="form-control btn btn-primary submit-form">Reset password</button>
+            </div>
+        </form>
+        </div>
+        <div class="modal-footer" >
+          
+          <div class="container" style="display:flex; justify-content: space-between;">
+            <a href="" class="nav-link active no-underline-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#sign-in-modal">sign in</a>
+          </div>
+        
+        </div>
+      </div>
+
+</div>
+</div>

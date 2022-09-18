@@ -1,0 +1,37 @@
+<div class="modal fade" id="sign-in-modal" tabindex="-1" aria-hidden="true">
+        
+    <div class="modal-dialog">
+      <div class="modal-content">
+        
+          <div class="modal-header">
+          <p style="font-size:2.5rem; margin:auto">Sign in</p>
+          </div>
+          
+        <div class="modal-body">
+          <form class='validity' method="POST" action="{% url 'users:login' %}" id="sign-in-form" autocomplete="off">
+            {% csrf_token %}
+            <div class="container mb-3">
+              <label>{{sign_in_form.username.label}}</label>
+              {{sign_in_form.username}}
+              <span id="sign-in-email-error" class="error"></span>
+            </div>
+            <div class="container mb-3">
+              <label>{{sign_in_form.password.label}}</label>
+              {{sign_in_form.password}}
+            </div>
+            <div class="container mt-3">
+              <button onclick='sign_in_form_submit()' class="form-control btn btn-primary submit-sign-in-form">Sign in</button>
+            </div>
+        </form>
+        
+        </div>
+        <div class="modal-footer" >
+          <div class="container" style="display:flex; justify-content: space-between;">
+            <a href="" class="nav-link active no-underline-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#pass-reset-modal">reset password</a>
+            <a href="" class="nav-link active no-underline-link" aria-current="page" data-bs-toggle="modal" data-bs-target="#sign-up-modal">sign up</a>
+          </div>
+        </div>
+      </div>
+
+</div>
+</div>

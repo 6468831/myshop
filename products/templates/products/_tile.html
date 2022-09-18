@@ -1,0 +1,24 @@
+{% load extra_tags %}
+
+<div style=" display:flex; width:80%; min-width:970px;  padding:25px; justify-content:space-between; background-color:rgb(255, 255, 255); border-bottom-style:inset; border-width: 1px; border-bottom-color: #E2E2E2">
+    <div style="display:flex; flex-direction:column">
+        {% for image in product.image_set.all %}
+            <div ><img src='{{image.image.url}}'style="width:220px; height:220px; border-radius:20px; object-fit: cover;"></div>
+        {% endfor %}
+    </div>
+    <div style="display:flex; flex-direction:column; gap:10px; max-width: 350px;">
+        <div>{{product.name}}</div>
+        {% if product.short_desc %}<div>{{product.short_desc}}</div>{% endif %}
+        <div style="display:flex; flex-direction:column">
+            {% for attr in product.productcategoryattribute_set.all %}
+                <div style="font-size:0.9rem"><span style="font-weight:bold; font-size:0.9rem">{{attr.category_attribute.attribute.name}}:</span> {{attr.value}} {{attr.category_attribute.attribute.units}}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:10px">
+        <div>${{product.price}}</div>
+        <button class="btn btn-primary">Buy now</button>
+        <div>Delivery: on {{ 2|from_today:'%b %d' }}</div>
+    </div>
+</div>

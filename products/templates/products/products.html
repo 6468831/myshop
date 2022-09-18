@@ -2,18 +2,11 @@
     
 {% block content %}
 
-{% load mptt_tags %}
-    <ul>
-        {% recursetree categories %}
-            <li>
-                {{ node.name }}
-                {% if not node.is_leaf_node %}
-                    <ul class="children">
-                        {{ children }}
-                    </ul>
-                {% endif %}
-            </li>
-        {% endrecursetree %}
-    </ul>
+    <div style="display:flex; gap:1px">
+            {% include '_sidebar_filters.html' %}
+            {% include '_main.html' %}
+        </div>
 
-    {% endblock %}
+
+
+{% endblock %}
