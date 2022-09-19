@@ -9,7 +9,28 @@
           </div>
           
         <div class="modal-body">
-          
+          <form method="POST" action="{% url 'users:register' %}" id="sign-up-form" autocomplete="off">
+            {% csrf_token %}
+            <div class="container mb-3">
+              <label>{{sign_up_form.email.label}}</label>
+              {{sign_up_form.email}}
+              <span id="sign-up-email-error" class="error"></span>
+            </div>
+            <div class="container mb-3">
+              <label>{{sign_up_form.password1.label}}</label>
+              {{sign_up_form.password1}}
+              <span id="pass1-error" class="error black">Minimum 8 characters</span>
+            </div>
+            <div class="container mb-3">
+              <label>{{sign_up_form.password2.label}}</label>
+              {{sign_up_form.password2}}
+              <span id="pass2-error" class="error"></span>
+            </div>
+            <div class="container mt-3">
+              <button onclick='sign_up_form_submit()' class="form-control btn btn-primary submit-sign-up-form">Sign up</button>
+
+            </div>
+          </form>
 
         </div>
         <div class="modal-footer" >

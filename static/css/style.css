@@ -7,3 +7,8 @@ body{
     background-color: #E2E2E2;
     margin:0;
 }
+
+.invalid {
+    border-color: rgb(253, 86, 86);
+
+}

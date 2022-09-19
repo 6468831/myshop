@@ -1,0 +1,7 @@
+{% autoescape off %}
+
+    Welcome, coder!
+
+    Please, verify your email: 
+    {{ protocol }}://{{ domain }}{% url 'users:email-verification' uidb64=uid token=token %}
+{% endautoescape %}

@@ -4,12 +4,12 @@ from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.contrib.auth.tokens import default_token_generator
-
-
+from django.contrib.sites.requests import RequestSite
 
 
 def send_email_to_verify(request, user):
-    current_site = get_current_site(request)
+    current_site = RequestSite(request)
+    print('!', current_site)
     context = {
         'user':user,
         'domain': current_site.domain,
