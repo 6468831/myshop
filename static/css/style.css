@@ -12,3 +12,14 @@ body{
     border-color: rgb(253, 86, 86);
 
 }
+
+.category-tree ul{
+    list-style-type: none;
+    margin-left: 20px;
+    padding: 5px;
+}
+
+.category-tree a{
+    text-decoration: none;
+    color: black;
+}

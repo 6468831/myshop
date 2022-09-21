@@ -5,7 +5,6 @@ from PIL import Image as pil_image
 
 
 
-
 class Category(MPTTModel):
     name = models.CharField(max_length=128, unique=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
@@ -17,6 +16,14 @@ class Category(MPTTModel):
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
+
+    @property
+    def path(self):
+        path = '/' + self.name.lower()
+        while self.parent:
+            path = '/' + self.parent.name.lower() + path
+            self = self.parent
+        return path
 
     def __str__(self):
         return f'{self.name}'

@@ -1,3 +1,23 @@
 <div style="width:20%; min-width:310px; height:100vh; background-color:white">
     {{request.user}}
+
+    <div class="category-tree">
+        {% load mptt_tags %}
+        
+        {% drilldown_tree_for_node category as drilldown count products.product.category in game_count %}
+        {% for node,structure in drilldown|tree_info %}
+            {% if structure.new_level %}<ul><li>{% else %}</li><li>{% endif %}
+            {% if node == category %}
+                <strong>{{ node.name }}</strong>
+            {% else %}
+                <a href="{{ node.path }}">{{ node.name }}</a>
+                {% if node.parent_id == category.pk %}({{ node.game_count }}){% endif %}
+                <!-- ({{node.game_count}}) -->
+            {% endif %}
+            {% for level in structure.closed_levels %}</li></ul>{% endfor %}
+        {% endfor %}  
+            
+    </div>
+    {{category.path}}
 </div>
+
