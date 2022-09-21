@@ -19,7 +19,7 @@ class Category(MPTTModel):
 
     @property
     def path(self):
-        path = '/' + self.name.lower()
+        path = '/' + self.name.lower() + '/'
         while self.parent:
             path = '/' + self.parent.name.lower() + path
             self = self.parent
@@ -43,21 +43,33 @@ class Product(models.Model):
 
 
 class CategoryAttribute(models.Model):
+    
+    FILTER_CHOICES = [
+    ('range', 'range'), 
+    ('single', 'single'), 
+    ('multi', 'multi')
+    ]
+
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     attribute = models.ForeignKey('Attribute', on_delete=models.CASCADE)
     show_on_tile = models.BooleanField(default=True)
     show_in_description = models.BooleanField(default=True)
+    units = models.CharField(max_length=128, blank=True, null=True)
+
+    filter_type = models.CharField(max_length=64, choices=FILTER_CHOICES, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.category} - {self.attribute}'
+        return f'{self.category} - {self.attribute} ({self.units})'
+
+
 
 
 class Attribute(models.Model):
+
     name = models.CharField(max_length=128)
-    units = models.CharField(max_length=128, blank=True, null=True)
 
     def __str__(self):
-        return f'{self.name} - {self.units}'
+        return f'{self.name}'
 
 
 class ProductCategoryAttribute(models.Model):
@@ -66,7 +78,7 @@ class ProductCategoryAttribute(models.Model):
     value = models.CharField(max_length=128)
 
     def __str__(self):
-        return f'{self.product.name} - {self.category_attribute.attribute.name} - {self.value} - {self.category_attribute.attribute.units}'
+        return f'{self.product.name} - {self.category_attribute.attribute.name} - {self.value} - {self.category_attribute.units}'
 
 
 class Image(models.Model):

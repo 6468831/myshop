@@ -18,6 +18,8 @@
         {% endfor %}  
             
     </div>
-    {{category.path}}
+    {% for filter in filters %}
+        {{ filter }}
+    {% endfor %}
 </div>
 
