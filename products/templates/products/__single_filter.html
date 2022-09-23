@@ -1,0 +1,25 @@
+
+
+<div style="width:70%; margin: 0 0 30px 20px">
+    <div style="font-weight:600; margin-bottom:10px;">{{category_attr}} {% if units %}({{units}}){% endif %}</div>
+
+    <select class="form-select" aria-label="Default select example">
+        
+        
+        {% for value in values %}
+            <option value="{{value.value}}">{{value.value}}</option>
+        {% endfor %}
+      </select>
+
+
+    <!-- <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% for value in values %}
+                <a class="dropdown-item" href="#">Action</a>
+            {% endfor %}
+        </div>
+    </div> -->
+</div>

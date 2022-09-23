@@ -1,0 +1,9 @@
+<div style="width:70%; margin: 0 0 30px 20px">
+    <div style="font-weight:600; margin-bottom:10px;">{{category_attr}} {% if units %}({{units}}){% endif %}</div>
+    {% for value in values %}
+        <div style="display:flex; gap:20px; margin-bottom:5px">    
+            <input class='form-check-input' style='margin:auto 0 auto 0; font-size:1.4rem' id='{{forloop.counter}}-{{category_attr|slugify}}' type="checkbox">
+            <label class='form-check-label' style='margin:auto 0 auto 0;' for='{{forloop.counter}}-{{category_attr|slugify}}'>{{value.value}}</label>
+        </div>
+    {% endfor %}
+</div>

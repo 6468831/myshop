@@ -58,7 +58,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='ProductCategoryAttribute',
+            name='SKUCategoryAttribute',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('value', models.CharField(max_length=128)),
@@ -69,7 +69,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='product',
             name='category_attributes',
-            field=models.ManyToManyField(through='products.ProductCategoryAttribute', to='products.categoryattribute'),
+            field=models.ManyToManyField(through='products.SKUCategoryAttribute', to='products.categoryattribute'),
         ),
         migrations.CreateModel(
             name='Image',
