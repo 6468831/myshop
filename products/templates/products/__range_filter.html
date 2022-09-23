@@ -1,9 +1,9 @@
 
 
-<div style="width:70%; margin: 0 0 20px 20px">
+<div class='js-filter js-filter-range' style="width:70%; margin: 0 0 30px 20px" id="filter-{{category_id}}" value="">
 <div style="font-weight:600">{{category_attr}}{{units.units}} {% if units %}({{units}}){% endif %}</div>
     <div style="display:flex; gap:40px">    
-        <input class='form-control' type="text" placeholder="{{min.value}}">
-        <input class='form-control' type="text" placeholder="{{max.value}}">
+        <input class='js-filter-min form-control' type="text" placeholder="{{min.value}}">
+        <input class='js-filter-max form-control' type="text" placeholder="{{max.value}}">
     </div>
 </div>
