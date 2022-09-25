@@ -1,7 +1,6 @@
 
-window.addEventListener('DOMContentLoaded', single_filters_set_value())
-window.addEventListener('DOMContentLoaded', multi_filters_set_value())
-window.addEventListener('DOMContentLoaded', range_filters_set_value())
+
+
 
 function single_filters_set_value(){
     filters = document.querySelectorAll('.js-filter-single')
@@ -9,7 +8,7 @@ function single_filters_set_value(){
         
         // changing value only if user selected something
         if (filter.querySelector('.form-select option:checked').value != ''){
-            filter.value = filter.id.split('-')[1] + '-' + filter.querySelector('.form-select option:checked').value
+            filter.value = filter.id.split('-')[1] + ',' + filter.querySelector('.form-select option:checked').value
         }else{
             filter.value = ''
         }
@@ -24,7 +23,7 @@ function multi_filters_set_value(){
         options_checked = filter.querySelectorAll('.form-check-input')
         for (option of options_checked){
             if (option.checked === true){
-                filter.value += '+' + option.value
+                filter.value += ',' + option.value
             }
         }
         if (filter.value == filter.id.split('-')[1]){
@@ -42,9 +41,9 @@ function range_filters_set_value(){
         max = filter.querySelector('.js-filter-max').value
         console.log('hey')
 
-        // changing value only if user has entered somtheing
+        // changing value only if user has entered something
         if (min != '' || max != ''){
-            filter.value = filter.id.split('-')[1] + '+' + min + '+' + max
+            filter.value = filter.id.split('-')[1] + ',' + min + ',' + max
         }else{
             filter.value = ''
         }
@@ -52,20 +51,28 @@ function range_filters_set_value(){
 }
 
 function get_values(){
+    single_filters_set_value()
+    multi_filters_set_value()
+    range_filters_set_value()
+
     filters = document.querySelectorAll('.js-filter')
     value = ''
     for (filter of filters){        
-        value += filter.value + '&'
+        if (filter.value != ''){
+            value += filter.value + '&'
+        }
     }
     return value
 }
 
 function form_url(){
-    url_params = '?' + get_values()
-    url_params = url_params.replace(/\W+$/, "")
+    url_params = get_values()
+    url_params = '?' + url_params.replace(/^&+|/, "").replace(/&+$/, "")
     console.log(url_params)
+    url = window.location.href.split('?')[0] + url_params
+    console.log(url)
+    window.location = url
 }
 
-
-window.addEventListener('#submit-filters', form_url())
+document.querySelector('#submit-filters').addEventListener('click', form_url)
 

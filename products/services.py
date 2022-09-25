@@ -1,7 +1,12 @@
 from django.template.loader import render_to_string
 from django.db.models import Min, Max
+from django.db.models import Q
+from functools import reduce
+import operator
 
 from .models import *
+
+# ---filter rendering---
 
 # getting all filters rendered to string
 def get_filters(category_attrs, sku_list):
@@ -77,3 +82,65 @@ def get_values_for_filters(category_attr, sku_list, filter_type):
     return values
             
          
+# ---filtering results---
+
+def get_query(params_in_url):
+    
+    # Parsing parameters
+    # Creating different types of dicts for each of 3 filter types 
+    # Passing them into Q objects.
+    # Merging Q objects into one.
+    
+    params = params_in_url.split('?')[1].split('&') if '?' in params_in_url else None
+    
+    query = Q()
+
+    if params:
+        for param in params:
+            if param:
+                param = param.split(',')
+                filter_type = CategoryAttribute.objects.get(id=param[0]).filter_type
+                if filter_type == 'single':
+                    dicts = (
+                        {'id': param[0]},
+                        {'value': param[1]},
+                    )
+                    query &= create_q_object(dicts)
+                
+                elif filter_type == 'multi':
+                    # create separate dict for each of chosen values
+                    multi_queries = Q()
+                    for value in param[1:]:
+                        dicts = (
+                            {'id': param[0]},
+                            {'value': value},
+                        )
+                        multi_queries |= create_q_object(dicts)
+                    query &= multi_queries
+                
+                elif filter_type == 'range':
+                    # create greater than and lower than dicts if corresponding values exist
+                    if param[1] != '':
+                        dicts = (
+                            {'id': param[0]},
+                            {'value__gte': param[1]},
+                        )
+                        query &= create_q_object(dicts)
+                    if param[2] != '':
+                        dicts = (
+                            {'id': param[0]},
+                            {'value__lte': param[2]},
+                        )
+                        query &= create_q_object(dicts)
+                    
+    return query
+
+
+
+
+def create_q_object(dicts):
+    return Q(id__in=StockKeepingUnit.objects.filter(skucategoryattribute__in=SKUCategoryAttribute.objects.filter(
+                category_attribute=CategoryAttribute.objects.get(
+                    **dicts[0]), 
+                **dicts[1])))
+

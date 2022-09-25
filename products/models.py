@@ -27,7 +27,7 @@ class Category(MPTTModel):
         return path
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.id} - {self.name}'
 
 
 class Product(models.Model):
@@ -38,7 +38,7 @@ class Product(models.Model):
     brand = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return f'{self.name} - {self.category.name}'
+        return f'{self.id} - {self.name} - {self.category.name}'
 
 
 class StockKeepingUnit(models.Model):
@@ -52,6 +52,8 @@ class StockKeepingUnit(models.Model):
     on_sale = models.BooleanField(default=False)
     web_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, max_length=16)
 
+    def __str__(self):
+        return f'{self.id} - {self.product.name}'
 
 class CategoryAttribute(models.Model):
     
@@ -70,7 +72,7 @@ class CategoryAttribute(models.Model):
     filter_type = models.CharField(max_length=64, choices=FILTER_CHOICES, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.category} - {self.attribute} ({self.units})'
+        return f'{self.id} - {self.category} - {self.attribute} ({self.units})'
 
 
 
@@ -80,7 +82,7 @@ class Attribute(models.Model):
     name = models.CharField(max_length=128)
 
     def __str__(self):
-        return f'{self.name}'
+        return f'{self.id} - {self.name}'
 
 
 class SKUCategoryAttribute(models.Model):
@@ -89,7 +91,7 @@ class SKUCategoryAttribute(models.Model):
     value = models.CharField(max_length=128)
 
     def __str__(self):
-        return f'{self.sku.product.name} - {self.category_attribute.attribute.name} - {self.value} - {self.category_attribute.units}'
+        return f'{self.id} - {self.sku.product.name} - {self.category_attribute.attribute.name} - {self.value} - {self.category_attribute.units}'
 
 
 class Image(models.Model):

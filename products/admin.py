@@ -2,6 +2,9 @@ from django.contrib import admin
 from mptt.admin import DraggableMPTTAdmin
 from .models import *
 
+class StockKeepingUnitID(admin.ModelAdmin):
+    readonly_fields = ('id',)
+
 admin.site.register(Product)
 admin.site.register(
     Category,
@@ -19,5 +22,5 @@ admin.site.register(Attribute)
 admin.site.register(CategoryAttribute)
 admin.site.register(SKUCategoryAttribute)
 admin.site.register(Image)
-admin.site.register(StockKeepingUnit)
+admin.site.register(StockKeepingUnit, StockKeepingUnitID)
 
