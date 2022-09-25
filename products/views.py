@@ -17,7 +17,11 @@ class ProductsFilterView(View):
 
         query = get_query(request.build_absolute_uri())
         print('!!!', query)
-        sku_lst = StockKeepingUnit.objects.filter(query)
+        
+        category_name = path.split('/')[-2]
+        category = get_object_or_404(Category, name__iexact=category_name)
+        sku_list_for_filters = StockKeepingUnit.objects.filter(product__in=Product.objects.filter(category=category))
+        sku_lst = StockKeepingUnit.objects.filter(query, product__in=Product.objects.filter(category=category))
 
         print('!', sku_lst)
 
@@ -35,14 +39,13 @@ class ProductsFilterView(View):
         
         # print('!!', sku_ids)
 
-        category_name = path.split('/')[-2]
-        category = get_object_or_404(Category, name__iexact=category_name)
         
-        sku_list = StockKeepingUnit.objects.filter(product__in=Product.objects.filter(category=category))
+        
         
         category_attrs = CategoryAttribute.objects.filter(Q(category=category) | Q (category=category.parent))
         
-        filters = get_filters(category_attrs, sku_list)
+        # use sku_lst here to see only available filters
+        filters = get_filters(category_attrs, sku_list_for_filters)
             
         context = {
             'sku_list': sku_lst,
