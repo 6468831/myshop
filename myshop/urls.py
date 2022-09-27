@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 
 from users.views import MyAccountSignupView
 from .views import *
+from products.views import CategoryEditView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,7 @@ urlpatterns = [
     path('accounts/signup/', MyAccountSignupView.as_view(), name='account-signup'),
     re_path(r'^accounts/', include('allauth.urls')),
     path('', IndexView.as_view(), name='index'),
+    re_path(r'admin-panel/edit-category', CategoryEditView.as_view(), name='edit-category')
 ]
 
 if settings.DEBUG:

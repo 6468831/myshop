@@ -23,3 +23,10 @@ body{
     text-decoration: none;
     color: black;
 }
+
+
+.sidebar{
+    width:20%; 
+    min-width:310px; 
+    background-color:white
+}

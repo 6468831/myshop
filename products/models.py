@@ -1,7 +1,12 @@
-from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from PIL import Image as pil_image
 import uuid
+
+from django.db import models
+from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
+
+from utils.models import DateTimeMixin, HiddenDeletedMixin
 
 
 
@@ -130,3 +135,11 @@ class Image(models.Model):
         
         main_img.thumbnail(output_size)
         main_img.save(self.image.path)
+
+
+
+class FileUpload(DateTimeMixin, models.Model):
+    file = models.FileField(upload_to='product_files', 
+                            validators=[FileExtensionValidator(allowed_extensions=['csv'])])
+    uploaded = models.BooleanField(default=False)
+

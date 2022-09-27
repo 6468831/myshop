@@ -1,7 +1,8 @@
-from django.urls import path
+from django.urls import path, re_path
 from django.views.generic import TemplateView
 from django.contrib.auth.views import *
 from .views import *
+
 
 
 urlpatterns = [
@@ -16,4 +17,6 @@ urlpatterns = [
     path('confirm-email/', TemplateView.as_view(template_name='registration/confirm_email.html'), name='confirm-email'), # user will see this page after registration
     path('email-verification/<uidb64>/<token>', EmailVerificationView.as_view(), name='email-verification'), #link that user gets in email
     path('invalid_email', TemplateView.as_view(template_name='registration/invalid_email.html'), name='invalid-email'),
+
+    path('admin-panel/', AdminPanelView.as_view(), name='admin-panel'),
 ]

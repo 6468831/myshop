@@ -1,5 +1,4 @@
 <div class="sidebar">
-    {{request.user}}
 
     <div class="category-tree">
         {% load mptt_tags %}
@@ -10,7 +9,7 @@
             {% if node == category %}
                 <strong>{{ node.name }}</strong> 
             {% else %}
-                <a href="{{ node.path }}">{{ node.name }}</a>
+                <a href='{% url "edit-category" %}{{ node.path }}'>{{ node.name }}</a>
                 {% if node.parent_id == category.pk %}({{ node.game_count }}){% endif %}
                 <!-- ({{node.game_count}}) -->
             {% endif %}
@@ -18,14 +17,5 @@
         {% endfor %}  
             
     </div>
-    
-    {% for filter in filters %}
-        {{ filter }}
-    {% endfor %}
 
-    <div style="margin:auto; width:90%">
-        <button type='button' id='submit-filters' class="btn btn-primary" style="width:100%">Apply filters</button>
-    </div>
-    
 </div>
-

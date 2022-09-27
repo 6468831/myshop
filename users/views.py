@@ -1,7 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
 from allauth.account.views import LoginView, SignupView
 from django.core.exceptions import ValidationError
 from django.http import JsonResponse
@@ -11,6 +10,7 @@ from django.utils.http import urlsafe_base64_decode
 
 
 from .forms import *
+from products.models import Category as Category
 
 
 class UserProfileView(View):
@@ -112,3 +112,26 @@ class EmailVerificationView(View):
         except (TypeError, ValueError, OverflowError, User.DoesNotExist, ValidationError):
             user = None
         return user
+
+
+
+class AdminPanelView(View):
+    def get(self, request):
+        
+        return render(request, 'admin/admin_panel.html')
+
+
+# class CategoryEditView(View):
+#     def get(self, request):
+#         path = request.path
+#         category_name = path.split('/')[-2]
+#         print('!', category_name)
+#         category = get_object_or_404(Category, name__iexact=category_name)
+
+
+#         context = {
+#             'category': category,
+#         }
+#         return render(request, 'admin/admin_edit_category.html', context=context)
+
+
