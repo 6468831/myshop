@@ -9,7 +9,7 @@
             {% if node == category %}
                 <strong>{{ node.name }}</strong> 
             {% else %}
-                <a href='{% url "edit-category" %}{{ node.path }}'>{{ node.name }}</a>
+                <a href='{% url "adminpanel:edit-category" %}{{ node.path }}'>{{ node.name }}</a>
                 {% if node.parent_id == category.pk %}({{ node.game_count }}){% endif %}
                 <!-- ({{node.game_count}}) -->
             {% endif %}

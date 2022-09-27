@@ -23,4 +23,5 @@ admin.site.register(CategoryAttribute)
 admin.site.register(SKUCategoryAttribute)
 admin.site.register(Image)
 admin.site.register(StockKeepingUnit, StockKeepingUnitID)
+admin.site.register(FileUpload)
 

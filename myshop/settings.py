@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'utils',
     'users',
     'products',
+    'adminpanel',
     'mptt',
 
     'allauth',

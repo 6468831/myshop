@@ -4,6 +4,5 @@ from .views import *
 urlpatterns = [
     re_path(r'', ProductsFilterView.as_view(), name='products'),
     
-
-
+    
 ]
