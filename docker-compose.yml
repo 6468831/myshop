@@ -1,0 +1,73 @@
+version: "3"
+
+services:
+  app_myshop:
+    build: .
+    # ports:
+    #   - "8000:8000"
+
+    command: python manage.py runserver 0.0.0.0:80
+    volumes:
+      # - ".:/app/src"
+      - './myshop/settings_server.py:/app/src/myshop/settings_local.py'
+      - '/home3/static_files:/home3/static_files'
+      - '/home3/media_files:/home3/media_files'
+    
+    environment:
+      - VIRTUAL_HOST=3112.site, 89.108.115.97
+      - LETSENCRYPT_HOST=3112.site
+
+    depends_on:
+      - app_migrate_myshop
+      - app_collectstatic_myshop
+
+
+
+  app_migrate_myshop:
+    build: .
+    volumes:
+      # - ".:/app/src"
+      - './myshop/settings_server.py:/app/src/myshop/settings_local.py'
+      - '/home3/static_files:/home3/static_files'
+      - '/home3/media_files:/home3/media_files'
+    command: "python manage.py migrate --noinput"
+
+  app_collectstatic_myshop:
+    build: .
+    # ports:
+      # - "80:80"
+    volumes:
+      # - ".:/app/src"
+      - './myshop/settings_server.py:/app/src/myshop/settings_local.py'
+      - '/home3/static_files:/home3/static_files'
+      - '/home3/media_files:/home3/media_files'
+
+    command: "python manage.py collectstatic --noinput"
+
+  db_adv:
+    image: postgres:14
+    environment:
+      POSTGRES_PASSWORD: pass123..
+
+    volumes:
+      - "../db-myshop:/var/lib/postgresql/data"
+    
+    command: ["postgres", "-c", "log_statement=all"]
+
+
+  nginx_adv:
+    image: nginx
+    environment:
+      - VIRTUAL_HOST=static.3112.site
+      - LETSENCRYPT_HOST=static.3112.site
+
+    volumes:
+      - '/home3/static_files:/usr/share/nginx/html/static'
+      - '/home3/media_files:/usr/share/nginx/html/media'
+
+  
+  
+networks:
+  default:
+    external:
+      name: nginx-proxy
