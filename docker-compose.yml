@@ -55,7 +55,7 @@ services:
     command: ["postgres", "-c", "log_statement=all"]
 
 
-  nginx_adv:
+  nginx_myshop:
     image: nginx
     environment:
       - VIRTUAL_HOST=static.3112.site
