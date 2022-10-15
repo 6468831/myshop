@@ -193,3 +193,9 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
+try:
+    from .settings_local import *
+except ImportError:
+    pass
