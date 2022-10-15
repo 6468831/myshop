@@ -44,7 +44,7 @@ services:
 
     command: "python manage.py collectstatic --noinput"
 
-  db_adv:
+  db_myshop:
     image: postgres:14
     environment:
       POSTGRES_PASSWORD: pass123..
