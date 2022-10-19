@@ -1,5 +1,13 @@
+{% load static %}
+
 <div style="width:80%; background-color:white">
-    {% for sku in sku_list %}
+    <!-- {% for sku in sku_list %}
         {% include 'products/_tile.html' %}
-    {% endfor %}
+    {% endfor %} -->
+
+    <div id="map-test" class="map" style="width:1000px; height:500px; background-color: aliceblue;"></div>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=ваш API-ключ&lang=ru_RU"></script>
+    <script src="{% static '/js/maps.js' %}"></script>
+
 </div>

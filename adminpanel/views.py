@@ -12,7 +12,7 @@ class CategoryEditView(UpdateView):
     template_name = 'adminpanel/admin_edit_category.html'
     form_class = CategoryEditForm
 
-
+    
     def get_object(self, queryset=None):
         path = self.request.path
         
