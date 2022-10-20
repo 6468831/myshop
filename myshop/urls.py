@@ -30,6 +30,8 @@ urlpatterns = [
     re_path(r'^accounts/', include('allauth.urls')),
     path('', IndexView.as_view(), name='index'),
     path('admin-panel/', include(('adminpanel.urls', 'adminpanel'), namespace='adminpanel')),
+    path('maps/', MapsView.as_view(), name='maps'),
+
     
 ]
 

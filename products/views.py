@@ -42,3 +42,4 @@ class ProductsFilterView(View):
         return render(request, "products/products.html", context=context)
 
 
+
