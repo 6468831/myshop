@@ -1,0 +1,11 @@
+.tile{
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    width:80%; 
+    min-width:970px;  
+    padding:25px;  
+    background-color:rgb(255, 255, 255); 
+    border-bottom-style:inset; 
+    border-width: 1px; 
+    border-bottom-color: #E2E2E2
+}

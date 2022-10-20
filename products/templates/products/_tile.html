@@ -1,6 +1,6 @@
 {% load extra_tags %}
 
-<div style=" display:flex; width:80%; min-width:970px;  padding:25px; justify-content:space-between; background-color:rgb(255, 255, 255); border-bottom-style:inset; border-width: 1px; border-bottom-color: #E2E2E2">
+<div class='tile'>
     <div style="display:flex; flex-direction:column">
         {% for image in sku.image_set.all %}
             <div ><img src='{{image.image.url}}'style="width:220px; height:220px; border-radius:20px; object-fit: cover;"></div>
